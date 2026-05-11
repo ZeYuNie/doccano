@@ -11,6 +11,7 @@
     "noEmit": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
+    "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "paths": {
       "~/*": ["./*"],

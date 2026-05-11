@@ -200,7 +200,7 @@ export default {
     selected() {
       const item = this.catalog.find((item) => item.displayName === this.selected)
       for (const [key, value] of Object.entries(item.properties)) {
-        this.option[key] = value.default
+        this.$set(this.option, key, value.default)
       }
       this.myFiles = []
       for (const file of this.uploadedFiles) {
