@@ -92,6 +92,17 @@ class TestJSONLParser(TestParser):
         expected = [json.loads(line1), json.loads(line2)]
         self.assert_record(content, parser, expected)
 
+    def test_can_read_latin_1(self):
+        filename = os.path.join(self.test_dir, "test_file.jsonl")
+        line = json.dumps({"data": "gemcitabine", "label": [[0, 11, "Drug Relevant"]]})
+        with open(filename, "w", encoding="latin_1") as f:
+            f.write(line)
+
+        parser = parsers.JSONLParser(encoding="latin_1")
+        row = next(parser.parse(filename))
+        row.pop(LINE_NUMBER_COLUMN, None)
+        self.assertEqual(row, json.loads(line))
+
 
 class TestFastTextParser(TestParser):
     def test_read(self):

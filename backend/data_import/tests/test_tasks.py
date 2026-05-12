@@ -196,6 +196,19 @@ class TestImportSequenceLabelingData(TestImportData):
         self.import_dataset(filename, file_format, self.task)
         self.assert_examples(dataset)
 
+    def test_jsonl_with_latin_1_encoding_and_custom_data_column(self):
+        filename = "sequence_labeling/example_latin_1.jsonl"
+        file_format = "JSONL"
+        kwargs = {"column_data": "data", "encoding": "latin_1"}
+        dataset = [
+            (
+                "Aetna considers gemcitabine (Gemzar) medically necessary for the following indications:",
+                [[16, 27, "Drug Relevant"]],
+            )
+        ]
+        self.import_dataset(filename, file_format, self.task, kwargs)
+        self.assert_examples(dataset)
+
     def test_conll(self):
         filename = "sequence_labeling/example.conll"
         file_format = "CoNLL"
