@@ -207,22 +207,22 @@ class AudioFile(Format):
 
 
 class ArgColumn(BaseModel):
-    encoding: encodings = "utf_8"
+    encoding: encodings = "Auto"
     column_data: str = "text"
     column_label: str = "label"
 
 
 class ArgDelimiter(ArgColumn):
-    encoding: encodings = "utf_8"
+    encoding: encodings = "Auto"
     delimiter: Literal[",", "\t", ";", "|", " "] = ","
 
 
 class ArgEncoding(BaseModel):
-    encoding: encodings = "utf_8"
+    encoding: encodings = "Auto"
 
 
 class ArgCoNLL(BaseModel):
-    encoding: encodings = "utf_8"
+    encoding: encodings = "Auto"
     scheme: Literal["IOB2", "IOE2", "IOBES", "BILOU"] = "IOB2"
     delimiter: Literal[" ", ""] = " "
 
